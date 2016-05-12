@@ -1,0 +1,15 @@
+{
+  "name": "doorlock-models",
+  "version": "1.0.0",
+  "description": "Db models for doorlock system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ole-Andreas Nylund",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.10.2",
+    "sequelize": "^3.23.0"
+  }
+}
