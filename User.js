@@ -21,6 +21,13 @@ module.exports = (sequelize, DataTypes) => {
         isAlphanumeric: true
       }
     },
+	graduationYear: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isInt: true
+      }
+    },
     privateEmail: {
       type: DataTypes.STRING(30),
       validate: {
