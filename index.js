@@ -1,11 +1,11 @@
 var Sequelize = require('sequelize');
 var fs = require('fs');
 var path = require('path');
-var sequelize = (dbName, dbUser, dbPassword) => {
+var sequelize = (dbName, dbUser, dbPassword, dbHost, dbPort) => {
   return new Sequelize(dbName, dbUser, dbPassword, {
     dialect: 'mysql',
-    host: '127.0.0.1',
-    port: 3306,
+    host: dbHost || '127.0.0.1',
+    port: dbPort || 3306,
     logging: null,
     pool: {
       max: 5,
