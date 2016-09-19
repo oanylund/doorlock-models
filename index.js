@@ -1,20 +1,23 @@
 var Sequelize = require('sequelize');
 var fs = require('fs');
 var path = require('path');
-var sequelize = new Sequelize('doorlockDB','doorlockUSER','youshallnotpass', {
-  dialect: 'mysql',
-  host: '127.0.0.1',
-  port: 3306,
-  logging: null,
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  },
-  define: {
-    timestamps: false
-  }
-})
+var sequelize = (dbName, dbUser, dbPassword) => {
+  return new Sequelize(dbName, dbUser, dbPassword, {
+    dialect: 'mysql',
+    host: '127.0.0.1',
+    port: 3306,
+    logging: null,
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    },
+    define: {
+      timestamps: false
+    }
+  });
+}
+
 
 var db = {}
 
