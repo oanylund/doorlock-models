@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM('purchase', 'deposit', 'withdrawal'),
       allowNull: false,
       validate: {
-        notEmpty: true
+        notEmpty: true,
+        isIn: [['purchase', 'deposit', 'withdrawal']],
       }
     },
     amount: {
@@ -32,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     classMethods: {
       associate: (models) => {
-        Transaction.belongsTo(models.User);
+        Transaction.belongsTo(models.User, { onDelete: 'CASCADE' });
         Transaction.belongsTo(models.Product);
       }
     }
