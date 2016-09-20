@@ -16,6 +16,11 @@ var sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.
 
 var db = {}
 
+// Utility function to uppercase first letter in string
+function titleCase(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // Load all models
 fs
   .readdirSync(__dirname)
@@ -27,7 +32,7 @@ fs
   })
   .forEach( (file) => {
     var model = sequelize.import(path.join(__dirname, file))
-    db[model.name] = model
+    db[titleCase(model.name)] = model
   })
 
 // Run associates
