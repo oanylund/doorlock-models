@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    old_balance: {
+    oldBalance: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       validate: {
