@@ -11,9 +11,6 @@ var sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.
     max: 5,
     min: 0,
     idle: 10000
-  },
-  define: {
-    timestamps: false
   }
 });
 

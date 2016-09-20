@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER(11).UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true
+    },
     firstName: {
       type: DataTypes.STRING(30),
       allowNull: false,
@@ -21,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         isAlphanumeric: true
       }
     },
-	graduationYear: {
+	  graduationYear: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -46,6 +51,19 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate: {
         isAlphanumeric: true
+      }
+    },
+    balance: {
+      type: DataTypes.DECIMAL(10, 2),
+      validate: {
+        isDecimal: true
+      }
+    }
+  },
+  {
+    classMethods: {
+      associate: (models) => {
+        User.hasMany(models.Transaction)
       }
     }
   });
