@@ -55,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     balance: {
       type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0,
       validate: {
         isDecimal: true
       }
@@ -63,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     classMethods: {
       associate: (models) => {
-        User.hasMany(models.Transaction)
+        User.hasMany(models.Transaction, { onDelete: 'CASCADE' })
       }
     }
   });
