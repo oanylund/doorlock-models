@@ -12,7 +12,15 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: true
       }
     },
-    price: {
+    retailPrice: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+      validate: {
+        isDecimal: true,
+        notEmpty: true
+      }
+    },
+    costPrice: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       validate: {
@@ -24,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
   {
     classMethods: {
       associate: (models) => {
-        Product.hasMany(models.Transaction)
+        Product.hasMany(models.Transaction);
+        Product.hasOne(models.ProductDetail, { onDelete: 'CASCADE' })
       }
     }
   });
