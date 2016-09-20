@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  var Transaction = sequelize.define('Transaction', {
+  var Transaction = sequelize.define('transaction', {
     id: {
       type: DataTypes.INTEGER(11).UNSIGNED,
       primaryKey: true,
