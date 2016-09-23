@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 0,
       validate: {
-        isDecimal: true
+        isDecimal: true,
+        notEmpty: true
       }
     },
     unitsSold: {
@@ -18,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 0,
       validate: {
-        isDecimal: true
+        isDecimal: true,
+        notEmpty: true
       }
     }
   });
