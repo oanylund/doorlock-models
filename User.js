@@ -40,7 +40,8 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: { msg: 'Påkrevd felt' },
         isYYYY: function(val) {
-          if( val.length != 4 || !/^[-+]?[0-9]+$/.test(val) ) {
+          var value = val + '';
+          if( value.length != 4 || !/^[-+]?[0-9]+$/.test(value) ) {
             throw new Error('Kun tall med fire siffer (YYYY)');
           }
         }
