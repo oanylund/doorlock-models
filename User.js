@@ -8,41 +8,54 @@ module.exports = (sequelize, DataTypes) => {
     firstName: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      defaultValue: '',
       validate: {
-        notEmpty: true
+        notEmpty: { msg: 'Påkrevd felt' }
       }
     },
     lastName: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      defaultValue: '',
       validate: {
-        notEmpty: true
+        notEmpty: { msg: 'Påkrevd felt' }
       }
     },
     userName: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      defaultValue: '',
       validate: {
-        is: /^[0-9A-ZÆØÅ]+$/i //is alphanumeric with norwegian locale
+        notEmpty: { msg: 'Påkrevd felt' },
+        is: {
+          args: /^[0-9A-ZÆØÅ]+$/i, //is alphanumeric with norwegian locale
+          msg: 'Kun et ord med bokstaver og tall tillatt'
+        },
       }
     },
 	  graduationYear: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: '',
       validate: {
-        isInt: true
+        notEmpty: { msg: 'Påkrevd felt' },
+        isYYYY: function(val) {
+          if( val.length != 4 || !/^[-+]?[0-9]+$/.test(val) ) {
+            throw new Error('Kun tall med fire siffer (YYYY)');
+          }
+        }
       }
     },
     privateEmail: {
       type: DataTypes.STRING(30),
       validate: {
-        isEmail: true
+        isEmail: { msg: 'Ikke gyldig e-postadresse' }
       }
     },
     mobile: {
       type: DataTypes.STRING(10),
       validate: {
-        isInt: true
+        isInt: { msg: 'Kun tall' }
       }
     },
     studentCardId: {
@@ -50,14 +63,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-        isAlphanumeric: true
+        isAlphanumeric: { msg: 'Kun et alfanumerisk ord'}
       }
     },
     balance: {
       type: DataTypes.DECIMAL(10, 2),
       defaultValue: 0,
       validate: {
-        isDecimal: true
+        isDecimal: { msg: 'Kun nummer'}
       }
     }
   },
