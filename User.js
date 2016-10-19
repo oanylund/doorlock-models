@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(30),
       allowNull: false,
       validate: {
-        isAlphanumeric: true
+        is: /^[0-9A-ZÆØÅ]+$/i //is alphanumeric with norwegian locale
       }
     },
 	  graduationYear: {
