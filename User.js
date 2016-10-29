@@ -66,20 +66,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isAlphanumeric: { msg: 'Kun et alfanumerisk ord'}
       }
-    },
-    balance: {
-      type: DataTypes.DECIMAL(10, 2),
-      defaultValue: 0,
-      validate: {
-        isDecimal: { msg: 'Kun nummer'}
-      }
-    }
-  },
-  {
-    classMethods: {
-      associate: (models) => {
-        User.hasMany(models.Transaction, { onDelete: 'CASCADE' })
-      }
     }
   });
 
