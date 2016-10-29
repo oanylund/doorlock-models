@@ -1,22 +1,25 @@
 var Sequelize = require('sequelize');
 var fs = require('fs');
 var path = require('path');
-var sequelize = new Sequelize('doorlockDB','doorlockUSER','youshallnotpass', {
+
+var sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   dialect: 'mysql',
-  host: '127.0.0.1',
-  port: 3306,
+  host: process.env.DB_HOST || '127.0.0.1',
+  port: process.env.DB_PORT || 3306,
   logging: null,
   pool: {
     max: 5,
     min: 0,
     idle: 10000
-  },
-  define: {
-    timestamps: false
   }
-})
+});
 
 var db = {}
+
+// Utility function to uppercase first letter in string
+function titleCase(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 // Load all models
 fs
@@ -29,7 +32,7 @@ fs
   })
   .forEach( (file) => {
     var model = sequelize.import(path.join(__dirname, file))
-    db[model.name] = model
+    db[titleCase(model.name)] = model
   })
 
 // Run associates
